@@ -23,10 +23,12 @@ var companySalesData = [
 ];
 
 function getTaxRate(province){
+  // grabs appropriate Sales Tax Rate
   return salesTaxRates[province];
 }
 
 function getSales(sales){
+  // calculates total sales in province
   var income = 0;
   for (i = 0; i < sales.length; i++) {
     income += sales[i];
@@ -35,6 +37,7 @@ function getSales(sales){
 }
 
 function getTaxes(sales, taxRate){
+  //calculates tax rate on sales
   return sales * taxRate;
 }
 
@@ -51,7 +54,6 @@ function calculateSalesTax(salesData, taxRates) {
   for (name in companySalesData){
     
     if (!totals[companySalesData[name].name]) {
-      // console.log(totals[companySalesData[name].name], '!==', companySalesData[name].name);
       create(companySalesData[name]); 
     } else {
       totals[companySalesData[name].name].totalSales += getSales(companySalesData[name].sales);
@@ -61,8 +63,6 @@ function calculateSalesTax(salesData, taxRates) {
   };
   console.log(totals);
 }
-
-
 
 var results = calculateSalesTax(companySalesData, salesTaxRates);
 
