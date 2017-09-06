@@ -24,7 +24,22 @@ var companySalesData = [
 
 function calculateSalesTax(salesData, taxRates) {
   // Implement your code here
+  var create = function(property){
+    totals[property] = {};
+  };
+  var totals = {};
+  var i = 0;
+  for (name in companySalesData){
+    console.log(companySalesData[name].name);
+    if (totals.name !== companySalesData[name].name) {
+      create(companySalesData[name].name);
+      
+    };
+    console.log(totals);
+  };
 }
+
+
 
 var results = calculateSalesTax(companySalesData, salesTaxRates);
 
