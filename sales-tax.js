@@ -51,7 +51,7 @@ function calculateSalesTax(salesData, taxRates) {
   for (name in companySalesData){
     
     if (!totals[companySalesData[name].name]) {
-      console.log(totals[companySalesData[name].name], '!==', companySalesData[name].name);
+      // console.log(totals[companySalesData[name].name], '!==', companySalesData[name].name);
       create(companySalesData[name]); 
     } else {
       totals[companySalesData[name].name].totalSales += getSales(companySalesData[name].sales);
