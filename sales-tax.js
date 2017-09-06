@@ -22,21 +22,44 @@ var companySalesData = [
   }
 ];
 
+function getTaxRate(province){
+  return salesTaxRates[province];
+}
+
+function getSales(sales){
+  var income = 0;
+  for (i = 0; i < sales.length; i++) {
+    income += sales[i];
+  };
+  return income;
+}
+
+function getTaxes(sales, taxRate){
+  return sales * taxRate;
+}
+
 function calculateSalesTax(salesData, taxRates) {
   // Implement your code here
-  var create = function(property){
-    totals[property] = {};
+  var create = function(business){
+    totals[business.name] = {
+      totalSales: getSales(business.sales),
+      totalTaxes: getTaxes(getSales(business.sales), getTaxRate(business.province))
+    };
   };
   var totals = {};
   var i = 0;
   for (name in companySalesData){
-    console.log(companySalesData[name].name);
-    if (totals.name !== companySalesData[name].name) {
-      create(companySalesData[name].name);
-      
-    };
-    console.log(totals);
+    
+    if (!totals[companySalesData[name].name]) {
+      console.log(totals[companySalesData[name].name], '!==', companySalesData[name].name);
+      create(companySalesData[name]); 
+    } else {
+      totals[companySalesData[name].name].totalSales += getSales(companySalesData[name].sales);
+      totals[companySalesData[name].name].totalTaxes += getTaxes(getSales(companySalesData[name].sales), getTaxRate(companySalesData[name].province));
+
+    }
   };
+  console.log(totals);
 }
 
 
